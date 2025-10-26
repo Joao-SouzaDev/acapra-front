@@ -5,6 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
 import Header from '@/components/Header';
+import LoginModal from '@/components/LoginModal';
 import { Text, View } from '@/components/Themed';
 import { getTheme } from '@/constants/Theme';
 
@@ -44,6 +45,12 @@ export default function DonationsScreen() {
     setLoginVisible(true);
   };
 
+  const handleLoginSubmit = (email: string, password: string) => {
+    console.log('Login nas Doações:', { email, password });
+    setLoginVisible(false);
+    // Implementar lógica de login real
+  };
+
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <Header 
@@ -79,6 +86,12 @@ export default function DonationsScreen() {
           />
         </View>
       </ScrollView>
+
+      <LoginModal
+        visible={loginVisible}
+        onClose={() => setLoginVisible(false)}
+        onLogin={handleLoginSubmit}
+      />
     </SafeAreaView>
   );
 }

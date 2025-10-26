@@ -1,7 +1,8 @@
 import { getTheme } from '@/constants/Theme';
 import { useRouter } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 import { Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import LoginModal from './LoginModal';
 
 interface HeaderProps {
   onLoginPress?: () => void;
@@ -14,6 +15,21 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const theme = getTheme();
   const router = useRouter();
+  const [loginModalVisible, setLoginModalVisible] = useState(false);
+
+  const handleLoginPress = () => {
+    if (onLoginPress) {
+      onLoginPress();
+    } else {
+      setLoginModalVisible(true);
+    }
+  };
+
+  const handleLogin = (email: string, password: string) => {
+    console.log('Login:', { email, password });
+    setLoginModalVisible(false);
+    // Aqui você implementaria a lógica real de login
+  };
 
   const styles = createStyles(theme);
 
@@ -45,15 +61,19 @@ export const Header: React.FC<HeaderProps> = ({
           <Text style={styles.menuItem}>Mais Info</Text>
         </TouchableOpacity>
         
-        {onLoginPress && (
-          <TouchableOpacity 
-            style={styles.loginButton}
-            onPress={onLoginPress}
-          >
-            <Text style={styles.loginButtonText}>Login</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity 
+          style={styles.loginButton}
+          onPress={handleLoginPress}
+        >
+          <Text style={styles.loginButtonText}>Login</Text>
+        </TouchableOpacity>
       </View>
+
+      <LoginModal
+        visible={loginModalVisible}
+        onClose={() => setLoginModalVisible(false)}
+        onLogin={handleLogin}
+      />
     </View>
   );
 };

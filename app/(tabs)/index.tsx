@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Button from '@/components/Button';
 import Header from '@/components/Header';
+import LoginModal from '@/components/LoginModal';
 import { Text, View } from '@/components/Themed';
 import { getTheme } from '@/constants/Theme';
 import { useRouter } from 'expo-router';
@@ -17,7 +18,12 @@ export default function HomeScreen() {
 
   const handleLogin = () => {
     setLoginVisible(true);
-    // Lógica de login aqui
+  };
+
+  const handleLoginSubmit = (email: string, password: string) => {
+    console.log('Login na Home:', { email, password });
+    setLoginVisible(false);
+    // Implementar lógica de login real
   };
 
   return (
@@ -68,6 +74,12 @@ export default function HomeScreen() {
           </View>
         </ImageBackground>
       </ScrollView>
+
+      <LoginModal
+        visible={loginVisible}
+        onClose={() => setLoginVisible(false)}
+        onLogin={handleLoginSubmit}
+      />
     </SafeAreaView>
   );
 }
