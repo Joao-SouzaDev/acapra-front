@@ -44,13 +44,13 @@ export default function HomeScreen() {
             <View style={styles.buttonContainer}>
               <Button
                 title="Faça uma doação →"
-                onPress={() => router.push('/(tabs)/two')}
+                onPress={() => router.push('/(tabs)/doar')}
                 variant="primary"
                 style={styles.primaryButton}
               />
               <Button
                 title="Adote →"
-                onPress={() => router.push('/modal')}
+                onPress={() => router.push('/info')}
                 variant="secondary"
                 style={styles.secondaryButton}
               />
@@ -60,7 +60,7 @@ export default function HomeScreen() {
               <Text style={styles.infoText}>Quem nós somos?</Text>
               <TouchableOpacity 
                 style={styles.infoButton}
-                onPress={() => router.push('/modal')}
+                onPress={() => router.push('/info')}
               >
                 <Text style={styles.infoButtonText}>Saiba mais →</Text>
               </TouchableOpacity>

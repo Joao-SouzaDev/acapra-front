@@ -33,11 +33,11 @@ export const Header: React.FC<HeaderProps> = ({
           <Text style={styles.menuItem}>Home</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity onPress={() => router.push('/(tabs)/two')}>
+        <TouchableOpacity onPress={() => router.push('/(tabs)/doar')}>
           <Text style={styles.menuItem}>Doações</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity onPress={() => router.push('/modal')}>
+        <TouchableOpacity onPress={() => router.push('/info')}>
           <Text style={styles.menuItem}>Mais Info</Text>
         </TouchableOpacity>
         

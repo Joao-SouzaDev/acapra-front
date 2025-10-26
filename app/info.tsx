@@ -48,7 +48,7 @@ export default function AboutScreen() {
             title="Fazer Doação"
             onPress={() => {
               router.back();
-              router.push('/(tabs)/two');
+              router.push('/(tabs)/doar');
             }}
             variant="secondary"
             style={styles.donateButton}

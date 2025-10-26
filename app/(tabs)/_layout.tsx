@@ -31,7 +31,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="doar"
         options={{
           title: 'Doações',
           tabBarIcon: ({ color }) => <TabBarIcon name="heart" color={color} />,

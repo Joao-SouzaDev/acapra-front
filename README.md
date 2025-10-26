@@ -25,8 +25,8 @@ capra-front/
 ├── app/                     # Rotas do Expo Router
 │   ├── (tabs)/             # Tab Navigation
 │   │   ├── index.tsx       # Home Screen (Hero Section)
-│   │   └── two.tsx         # Donations Screen
-│   ├── modal.tsx           # About/Info Modal
+│   │   └── doar.tsx        # Donations Screen
+│   ├── info.tsx            # About/Info Screen
 │   └── _layout.tsx         # Root Layout
 ├── components/             # Componentes reutilizáveis
 │   ├── Button.tsx          # Botão estilo ACAPRA
@@ -49,8 +49,9 @@ capra-front/
 - ✅ Tela de doações com cartões
 - ✅ Modal informativo sobre a organização
 - ✅ Componentes modulares e reutilizáveis
-- ✅ Tema completo com suporte a dark/light mode
+- ✅ Tema claro unificado (modo escuro removido)
 - ✅ Design responsivo
+- ✅ Header escondido no mobile (apenas tabs)
 
 ## 🎯 Componentes Principais
 
@@ -103,23 +104,43 @@ npm run ios
 npm run android
 ```
 
-## 🎨 Customização do Tema
+## 🎨 Sistema de Tema
 
-O tema está centralizado em `constants/Theme.ts` e `constants/Colors.ts`. Para alterar as cores:
+O tema está centralizado e simplificado (apenas modo claro):
 
 ```typescript
-// Em constants/Colors.ts
-const primary = '#8A5EFF'; // Cor principal ACAPRA
-const secondary = '#6c44ff'; // Cor secundária ACAPRA
+// constants/Colors.ts - Paleta ACRAPRA unificada
+export default {
+  primary: '#8A5EFF',      // Roxo principal
+  secondary: '#6c44ff',     // Roxo secundário
+  background: '#fff',       // Fundo branco
+  text: '#000',            // Texto preto
+  // ... outras cores
+}
+
+// constants/Theme.ts - Sistema completo
+export const getTheme = () => theme; // Sempre modo claro
 ```
 
 ## 📱 Navegação
 
+### Estrutura de Rotas:
 ```
-Home (/) → Hero section com botões de ação
-├── Doações (/two) → Lista de opções de doação
-└── Sobre (/modal) → Informações da organização
+🏠 Home (/(tabs)/) → Hero section com animais para adoção
+├── 💝 Doações (/(tabs)/doar) → Opções de doação e PIX
+└── ℹ️ Sobre (/info) → Informações da CAPRA
 ```
+
+### Comportamento por Plataforma:
+- **Web/Desktop**: Header completo com menu de navegação
+- **Mobile**: Apenas tabs inferiores (header escondido)
+
+## ✨ Melhorias Recentes
+
+- ✅ **Rotas semânticas**: `two.tsx` → `doar.tsx`, `modal.tsx` → `info.tsx`
+- ✅ **Modo escuro removido**: Interface simplificada apenas modo claro
+- ✅ **Header responsivo**: Escondido no mobile, visível no desktop
+- ✅ **Navegação otimizada**: Tabs para mobile, header para desktop
 
 ## 🔮 Próximos Passos
 
@@ -129,6 +150,7 @@ Home (/) → Hero section com botões de ação
 - [ ] Sistema de favoritos
 - [ ] Notificações push
 - [ ] Compartilhamento social
+- [ ] Implementação do modo escuro (opcional)
 
 ## 📄 Créditos
 
