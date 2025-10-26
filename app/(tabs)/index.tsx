@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import LoginModal from '@/components/LoginModal';
 import { Text, View } from '@/components/Themed';
 import { getTheme } from '@/constants/Theme';
+import { createSharedStyles } from '@/styles/shared';
 import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {
@@ -14,7 +15,9 @@ export default function HomeScreen() {
   const router = useRouter();
   const [loginVisible, setLoginVisible] = useState(false);
 
-  const styles = createStyles(theme);
+  const sharedStyles = createSharedStyles(theme);
+  const customStyles = createStyles(theme);
+  const styles = { ...sharedStyles, ...customStyles };
 
   const handleLogin = () => {
     setLoginVisible(true);
@@ -85,13 +88,7 @@ export default function HomeScreen() {
 }
 
 const createStyles = (theme: any) => StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: theme.colors.primary,
-  },
-  container: {
-    flex: 1,
-  },
+  // Estilos específicos da tela inicial
   scrollContent: {
     flexGrow: 1,
   },

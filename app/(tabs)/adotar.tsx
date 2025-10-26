@@ -6,20 +6,15 @@ import Button from '@/components/Button';
 import Header from '@/components/Header';
 import { GradientView, Text, View } from '@/components/Themed';
 import { getTheme } from '@/constants/Theme';
-
-interface Pet {
-    id: string;
-    name: string;
-    breed: string;
-    age: string;
-    size: string;
-    type: 'dog' | 'cat';
-    image: string;
-}
+import { Pet } from '@/interfaces';
+import { createNavigationStyles, createSharedStyles } from '@/styles/shared';
 
 const AdotarScreen = () => {
     const theme = getTheme();
-    const styles = createStyles(theme);
+    const sharedStyles = createSharedStyles(theme);
+    const navigationStyles = createNavigationStyles(theme);
+    const customStyles = createStyles(theme);
+    const styles = { ...sharedStyles, ...navigationStyles, ...customStyles };
     const [selectedFilter, setSelectedFilter] = useState<'all' | 'dog' | 'cat'>('all');
     
     // Mock data - será substituído pela API

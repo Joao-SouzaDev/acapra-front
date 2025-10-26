@@ -1,17 +1,9 @@
 import { getTheme } from '@/constants/Theme';
+import { createSharedStyles } from '@/styles/shared';
+import { CardProps } from '@/types';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Button from './Button';
-
-interface CardProps {
-  title: string;
-  description?: string;
-  children?: React.ReactNode;
-  onPress?: () => void;
-  style?: ViewStyle;
-  buttonTitle?: string;
-  onButtonPress?: () => void;
-}
 
 export const Card: React.FC<CardProps> = ({ 
   title,
@@ -24,7 +16,9 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const theme = getTheme();
   
-  const styles = createStyles(theme);
+  const sharedStyles = createSharedStyles(theme);
+  const customStyles = createStyles(theme);
+  const styles = { ...sharedStyles, ...customStyles };
 
   const CardContent = (
     <View style={[styles.card, style]}>

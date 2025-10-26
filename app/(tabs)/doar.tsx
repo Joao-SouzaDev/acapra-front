@@ -8,12 +8,15 @@ import Header from '@/components/Header';
 import LoginModal from '@/components/LoginModal';
 import { Text, View } from '@/components/Themed';
 import { getTheme } from '@/constants/Theme';
+import { createSharedStyles } from '@/styles/shared';
 
 export default function DonationsScreen() {
   const theme = getTheme();
   const [loginVisible, setLoginVisible] = useState(false);
 
-  const styles = createStyles(theme);
+  const sharedStyles = createSharedStyles(theme);
+  const customStyles = createStyles(theme);
+  const styles = { ...sharedStyles, ...customStyles };
 
   const donations = [
     {
@@ -97,31 +100,7 @@ export default function DonationsScreen() {
 }
 
 const createStyles = (theme: any) => StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: theme.colors.primary,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.backgroundGradientStart,
-  },
-  header: {
-    alignItems: 'center',
-    paddingVertical: theme.spacing.xl,
-    paddingHorizontal: theme.spacing.lg,
-  },
-  title: {
-    fontSize: theme.fonts.xxxlarge,
-    fontWeight: theme.fontWeights.bold,
-    color: theme.colors.secondary,
-    marginBottom: theme.spacing.sm,
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: theme.fonts.large,
-    color: theme.colors.textSecondary,
-    textAlign: 'center',
-  },
+  // Estilos específicos da tela de doações
   cardsContainer: {
     paddingHorizontal: theme.spacing.lg,
     paddingBottom: theme.spacing.lg,

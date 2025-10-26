@@ -1,16 +1,7 @@
 import { getTheme } from '@/constants/Theme';
+import { ButtonProps } from '@/types';
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
-
-interface ButtonProps {
-  title: string;
-  onPress: () => void;
-  variant?: 'primary' | 'secondary';
-  disabled?: boolean;
-  loading?: boolean;
-  style?: ViewStyle;
-  textStyle?: TextStyle;
-}
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export const Button: React.FC<ButtonProps> = ({ 
   title, 

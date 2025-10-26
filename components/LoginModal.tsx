@@ -15,14 +15,10 @@ import {
 import Button from '@/components/Button';
 import { Text, View } from '@/components/Themed';
 import { getTheme } from '@/constants/Theme';
+import { createModalStyles, createSharedStyles } from '@/styles/shared';
+import { LoginModalProps } from '@/types';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
-
-interface LoginModalProps {
-  visible: boolean;
-  onClose: () => void;
-  onLogin?: (email: string, password: string) => void;
-}
 
 export const LoginModal: React.FC<LoginModalProps> = ({ 
   visible, 
@@ -30,7 +26,9 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   onLogin 
 }) => {
   const theme = getTheme();
-  const styles = createStyles(theme);
+  const sharedStyles = createSharedStyles(theme);
+  const modalStyles = createModalStyles(theme);
+  const styles = { ...sharedStyles, ...modalStyles, ...createCustomStyles(theme) };
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -116,7 +114,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             <View style={styles.header}>
               <View style={styles.titleSection}>
                 <Text style={styles.logo}>🐾</Text>
-                <Text style={styles.title}>Login CAPRA</Text>
+                <Text style={styles.modalTitle}>Login CAPRA</Text>
               </View>
               <TouchableOpacity 
                 style={styles.closeButton}
@@ -127,7 +125,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
             </View>
 
             {/* Formulário */}
-            <View style={styles.form}>
+            <View style={styles.container}>
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>E-mail</Text>
                 <TextInput
@@ -146,7 +144,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
                 <Text style={styles.inputLabel}>Senha</Text>
                 <View style={styles.passwordContainer}>
                   <TextInput
-                    style={[styles.input, styles.passwordInput]}
+                    style={styles.input}
                     placeholder="••••••••"
                     placeholderTextColor={theme.colors.grayDark}
                     value={password}
@@ -205,23 +203,8 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   );
 };
 
-const createStyles = (theme: any) => StyleSheet.create({
-  // Overlay que desfoca o fundo
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: theme.spacing.lg,
-  },
-  // Container do modal compacto
-  modalContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxWidth: 400,
-    width: '100%',
-  },
-  // Conteúdo do modal
+// Estilos específicos do LoginModal (que não estão nos shared)
+const createCustomStyles = (theme: any) => StyleSheet.create({
   modalContent: {
     width: '100%',
     maxHeight: screenHeight * 0.85,
@@ -229,23 +212,7 @@ const createStyles = (theme: any) => StyleSheet.create({
     overflow: 'hidden',
     ...theme.shadows.large,
   },
-  container: {
-    flex: 1,
-  },
-  gradient: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingHorizontal: theme.spacing.lg,
-    paddingVertical: theme.spacing.md,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: theme.spacing.md,
-    backgroundColor: 'transparent',
-  },
+  // Estilos específicos do modal de login
   titleSection: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -255,48 +222,13 @@ const createStyles = (theme: any) => StyleSheet.create({
     fontSize: 28,
     marginRight: theme.spacing.sm,
   },
-  title: {
+  modalTitle: {
     fontSize: theme.fonts.large,
     fontWeight: theme.fontWeights.bold,
     color: theme.colors.primary,
   },
-  closeButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: theme.colors.grayLight,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  closeButtonText: {
-    fontSize: 14,
-    color: theme.colors.textSecondary,
-    fontWeight: theme.fontWeights.bold,
-  },
-  form: {
-    backgroundColor: 'transparent',
-    marginBottom: theme.spacing.md,
-  },
-  inputContainer: {
-    marginBottom: theme.spacing.md,
-    backgroundColor: 'transparent',
-  },
-  inputLabel: {
-    fontSize: theme.fonts.medium,
-    fontWeight: theme.fontWeights.semibold,
-    color: theme.colors.textPrimary,
-    marginBottom: theme.spacing.sm,
-  },
-  input: {
-    backgroundColor: theme.colors.white,
-    borderRadius: theme.borderRadius.md,
-    paddingHorizontal: theme.spacing.md,
-    paddingVertical: theme.spacing.md,
-    fontSize: theme.fonts.medium,
-    color: theme.colors.textPrimary,
-    borderWidth: 2,
-    borderColor: theme.colors.border,
-    ...theme.shadows.small,
+  gradient: {
+    flex: 1,
   },
   passwordContainer: {
     position: 'relative',
