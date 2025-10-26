@@ -40,19 +40,6 @@ capra-front/
 └── assets/                # Imagens e recursos
 ```
 
-## 🧩 Funcionalidades Implementadas
-
-- ✅ Tela inicial com hero section inspirada no ACAPRA
-- ✅ Sistema de cores roxo (#8A5EFF) idêntico ao ACAPRA
-- ✅ Navegação com tabs (Home, Doações)
-- ✅ Header responsivo com navegação
-- ✅ Tela de doações com cartões
-- ✅ Modal informativo sobre a organização
-- ✅ Componentes modulares e reutilizáveis
-- ✅ Tema claro unificado (modo escuro removido)
-- ✅ Design responsivo
-- ✅ Header escondido no mobile (apenas tabs)
-
 ## 🎯 Componentes Principais
 
 ### Button Component
@@ -135,26 +122,6 @@ export const getTheme = () => theme; // Sempre modo claro
 - **Web/Desktop**: Header completo com menu de navegação
 - **Mobile**: Apenas tabs inferiores (header escondido)
 
-## ✨ Melhorias Recentes
-
-- ✅ **Rotas semânticas**: `two.tsx` → `doar.tsx`, `modal.tsx` → `info.tsx`
-- ✅ **Modo escuro removido**: Interface simplificada apenas modo claro
-- ✅ **Header responsivo**: Escondido no mobile, visível no desktop
-- ✅ **Navegação otimizada**: Tabs para mobile, header para desktop
-
-## 🔮 Próximos Passos
-
-- [ ] Integração com API backend
-- [ ] Autenticação de usuários
-- [ ] Listagem de animais para adoção
-- [ ] Sistema de favoritos
-- [ ] Notificações push
-- [ ] Compartilhamento social
-- [ ] Implementação do modo escuro (opcional)
-
-## 📄 Créditos
-
-Design e sistema de cores inspirados no repositório [ACAPRA](https://github.com/Joao-SouzaDev/capra-front) de João Souza.
 
 ## 📄 Licença
 
