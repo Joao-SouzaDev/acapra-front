@@ -31,6 +31,14 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="adotar"
+        options={{
+          title: 'Adotar',
+          tabBarIcon: ({ color }) => <TabBarIcon name="paw" color={color} />,
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
         name="doar"
         options={{
           title: 'Doações',

@@ -50,7 +50,7 @@ export default function HomeScreen() {
               />
               <Button
                 title="Adote →"
-                onPress={() => router.push('/info')}
+                onPress={() => router.push('/adotar')}
                 variant="secondary"
                 style={styles.secondaryButton}
               />
