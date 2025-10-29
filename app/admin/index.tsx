@@ -83,7 +83,7 @@ export default function AdminDashboard() {
           {/* Back Button */}
           <TouchableOpacity
             style={styles.backButton}
-            onPress={() => router.push('/(tabs)/')}
+            onPress={() => router.push('/(tabs)')}
           >
             <Text style={styles.backButtonText}>← Voltar para Home</Text>
           </TouchableOpacity>
