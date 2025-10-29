@@ -11,6 +11,7 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
+import { useRouter } from 'expo-router';
 
 import Button from '@/components/Button';
 import { Text, View } from '@/components/Themed';
@@ -26,6 +27,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
   onLogin 
 }) => {
   const theme = getTheme();
+  const router = useRouter();
   const sharedStyles = createSharedStyles(theme);
   const modalStyles = createModalStyles(theme);
   const styles = { ...sharedStyles, ...modalStyles, ...createCustomStyles(theme) };
@@ -54,14 +56,23 @@ export const LoginModal: React.FC<LoginModalProps> = ({
       
       if (onLogin) {
         onLogin(email, password);
-      } else {
-        // Mock login - apenas para demonstração
-        Alert.alert(
-          'Login realizado! 🎉', 
-          `Bem-vindo(a), ${email}!\nVocê agora pode gerenciar adoções e doações.`,
-          [{ text: 'OK', onPress: handleClose }]
-        );
       }
+      
+      // Fechar modal e redirecionar para painel administrativo
+      handleClose();
+      
+      Alert.alert(
+        'Login realizado! 🎉', 
+        `Bem-vindo(a), ${email}!\nRedirecionando para o painel administrativo...`,
+        [
+          { 
+            text: 'OK', 
+            onPress: () => {
+              router.push('/admin');
+            }
+          }
+        ]
+      );
     } catch (error) {
       Alert.alert('Erro', 'Falha ao fazer login. Tente novamente.');
     } finally {
