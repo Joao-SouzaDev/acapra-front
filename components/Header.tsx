@@ -33,9 +33,23 @@ export const Header: React.FC<HeaderProps> = ({
 
   const styles = createStyles(theme);
 
-  // No mobile, não mostrar o header (já temos navegação nas tabs)
+  // No mobile, mostrar apenas botão de login no canto superior
   if (Platform.OS !== 'web') {
-    return null;
+    return (
+      <View style={styles.mobileContainer}>
+        <TouchableOpacity 
+          style={styles.mobileLoginButton}
+          onPress={handleLoginPress}
+        >
+          <Text style={styles.mobileLoginButtonText}>Login</Text>
+        </TouchableOpacity>
+        <LoginModal
+          visible={loginModalVisible}
+          onClose={() => setLoginModalVisible(false)}
+          onLogin={handleLogin}
+        />
+      </View>
+    );
   }
 
   return (
@@ -118,6 +132,28 @@ const createStyles = (theme: any) => StyleSheet.create({
   loginButtonText: {
     color: theme.colors.white,
     fontWeight: theme.fontWeights.semibold,
+  },
+  // Mobile styles
+  mobileContainer: {
+    position: 'absolute',
+    top: theme.spacing.sm + 2,
+    right: theme.spacing.md,
+    zIndex: 1000,
+    backgroundColor: 'transparent',
+  },
+  mobileLoginButton: {
+    backgroundColor: theme.colors.primary,
+    borderWidth: 2,
+    borderColor: theme.colors.white,
+    paddingVertical: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.md,
+    borderRadius: theme.borderRadius.md,
+    ...theme.shadows.medium,
+  },
+  mobileLoginButtonText: {
+    color: theme.colors.white,
+    fontWeight: theme.fontWeights.semibold,
+    fontSize: theme.fonts.regular,
   },
 });
 
