@@ -133,11 +133,11 @@ const createStyles = (theme: any) => StyleSheet.create({
     color: theme.colors.white,
     fontWeight: theme.fontWeights.semibold,
   },
-  // Estilos para mobile
+  // Mobile styles
   mobileContainer: {
     position: 'absolute',
-    top: 10,
-    right: 16,
+    top: theme.spacing.sm + 2,
+    right: theme.spacing.md,
     zIndex: 1000,
     backgroundColor: 'transparent',
   },
@@ -145,22 +145,15 @@ const createStyles = (theme: any) => StyleSheet.create({
     backgroundColor: theme.colors.primary,
     borderWidth: 2,
     borderColor: theme.colors.white,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.md,
     borderRadius: theme.borderRadius.md,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    ...theme.shadows.medium,
   },
   mobileLoginButtonText: {
     color: theme.colors.white,
     fontWeight: theme.fontWeights.semibold,
-    fontSize: 14,
+    fontSize: theme.fonts.regular,
   },
 });
 
